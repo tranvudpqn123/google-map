@@ -1,0 +1,89 @@
+<div class="main-wrapper">
+    <div class="map-container">
+        <div class="map-frame">
+            <div id="googleMap"></div>
+        </div>
+    </div>
+
+
+    <div class="overflow-auto map-merchants">
+        <div class="p-2" [formGroup]="searchForm">
+            <div class="d-flex align-items-center border rounded merchant-search-box">
+                <div class="px-2 border-end">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                         class="bi bi-search" viewBox="0 0 16 16">
+                        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+                    </svg>
+                </div>
+
+                <input type="text" class="border-0 form-control" formControlName="keySearch">
+            </div>
+        </div>
+
+
+        <div
+            *ngFor="let merchant of merchants"
+            class="d-flex align-items-center gap-2 merchant"
+            [title]="merchant.name"
+            [class.selected]="merchant.selected"
+            (click)="onSelectMerchant(merchant)"
+        >
+            <span>{{merchant.orderNumber}}</span>
+            <div class="text-truncate">{{merchant.name}}</div>
+        </div>
+    </div>
+
+
+    <div class="merchants">
+        <div
+            *ngFor="let serviceType of serviceTypes"
+            class="d-flex align-items-center justify-content-between merchant"
+            [class.selected]="serviceType.selected"
+            (click)="onSelectServiceType(serviceType)"
+        >
+            <div class="d-flex gap-2 align-items-center cursor-pointer">
+                <img [src]="serviceType.icon" alt="icon" width="16px" height="16px">
+                <span>{{ serviceType.name }}</span>
+            </div>
+            <span>10</span>
+        </div>
+    </div>
+
+
+    <div *ngIf="focusedMerchant" class="position-fixed w-100 h-100 merchant-detail">
+        <div class="position-fixed bg-white main-wrapper">
+            <button class="position-absolute btn bg-white btn-close-modal">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+                    <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z"/>
+                </svg>
+            </button>
+
+            <div
+                class="position-relative avatar"
+                [ngStyle]="{
+                    'background-image': 'url(' + focusedMerchant.avatar + ')'
+                }">
+            </div>
+
+            <div class="p-4">
+                <h5 class="my-3 name">{{focusedMerchant.name}}</h5>
+
+                <div class="mb-3 text-wrapper">
+                    <label>Mô tả</label>
+                    <p class="mb-0 description">{{focusedMerchant.description}}</p>
+                </div>
+
+                <div class="mb-3 text-wrapper">
+                    <label>Địa chỉ</label>
+                    <p class="mb-0 description">{{focusedMerchant.full_address}}</p>
+                </div>
+
+                <div class="mb-3 text-wrapper">
+                    <label>Thời gian làm việc</label>
+                    <p class="mb-0 description">{{focusedMerchant.start_hour}} - {{focusedMerchant.start_hour}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

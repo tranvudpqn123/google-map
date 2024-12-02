@@ -1,0 +1,101 @@
+.map-container {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+}
+
+.map-frame {
+    border: 2px solid black;
+    height: 100%;
+}
+
+#googleMap {
+    height: 100%;
+}
+
+
+.merchants,
+.map-merchants{
+    position: absolute;
+
+    display: block;
+    width: 220px;
+    background-color: #fff;
+    border-radius: 4px;
+    border: 1px solid #d6d6d6;
+
+    font-size: 12px;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+    z-index: 100;
+
+    .merchant {
+        padding: 4px 10px;
+        cursor: pointer;
+
+        &.selected,
+        &:hover {
+            background-color: #d6d6d6;
+        }
+    }
+
+}
+
+
+.merchants{
+    bottom: 1rem;
+    left: 1rem;
+}
+
+.map-merchants{
+    top: 5rem;
+    left: 1rem;
+
+    max-height: 280px;
+
+    .form-control {
+        padding: 0.325rem 0.75rem;
+        font-size: 12px;
+    }
+}
+
+.merchant-detail {
+    top: 0;
+    left: 0;
+    background: rgba(0,0,0,.5);
+    z-index: 200;
+
+    .main-wrapper {
+        right: 0;
+        width: 450px;
+        height: 100vh;
+
+        border-top-left-radius: 15px;
+        border-bottom-left-radius: 15px;
+        font-size: 13px;
+    }
+
+
+    .btn-close-modal {
+        transform: translate(-120%, .5rem);
+        border: 1px solid gray;
+        border-radius: 50%;
+        box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+    }
+
+    .avatar {
+        border-top-left-radius: 16px;
+        height: 250px;
+        background-position: center;
+        background-size: cover;
+    }
+
+    .name {
+        font-size: 24px;
+    }
+
+    .text-wrapper {
+        label {
+            color: #9f9f9f;
+        }
+    }
+}
